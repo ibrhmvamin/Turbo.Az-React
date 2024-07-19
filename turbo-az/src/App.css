@@ -43,7 +43,7 @@ ul li {
 .links {
   display: flex;
   flex-direction: row;
-  padding: 20px;
+  padding: 20px 0;
   width: 100%;
   justify-content: space-around;
   background-color: #ca1016;

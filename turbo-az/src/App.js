@@ -9,10 +9,11 @@ import {
   faCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 import { store } from "./app/store";
 import NewAnnouncement from "./pages/NewAnnouncement";
 import Favorites from "./pages/Favorites";
-
+import CarDetail from "./components/CarDetail";
 function App() {
   return (
     <Provider store={store}>
@@ -75,7 +76,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/new-car" element={<NewAnnouncement />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route path="*" element={<Home />} />
+            <Route exact path="/cars/:id" element={<CarDetail />}></Route>
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </Router>

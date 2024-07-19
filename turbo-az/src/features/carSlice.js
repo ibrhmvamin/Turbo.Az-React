@@ -5,6 +5,19 @@ const api = axios.create({
   baseURL: "http://localhost:27001",
 });
 
+export const fetchCarById = createAsyncThunk(
+  "cars/fetchCarById",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`/cars/${id}`);
+      console.log("response", response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const fetchCars = createAsyncThunk("cars/fetchCars", async () => {
   const response = await api.get("/cars");
   return response.data;
@@ -32,6 +45,7 @@ const carSlice = createSlice({
   name: "cars",
   initialState: {
     cars: [],
+    car: {},
     loading: false,
     error: null,
   },

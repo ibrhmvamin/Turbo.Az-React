@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../App.css";
+import "./CarFilter.css";
 
 export default function CarFilter({ currentCar, setCurrentCar }) {
   const carVendors = [
@@ -90,38 +90,42 @@ export default function CarFilter({ currentCar, setCurrentCar }) {
     ],
   };
 
-  //   const [filterData, setFilterData] = useState({
-  //     vendor: "",
-  //     model: "",
-  //   });
+  const azerbaijaniCities = [
+    "Baku",
+    "Ganja",
+    "Sumqayit",
+    "Lankaran",
+    "Mingachevir",
+    "Sheki",
+    "Shirvan",
+    "Gabala",
+    "Khachmaz",
+    "Zagatala",
+    "Guba",
+    "Naftalan",
+    "Agdam",
+    "Agjabadi",
+    "Khirdalan",
+    "Yevlakh",
+    "Bilasuvar",
+    "Gazakh",
+    "Tovuz",
+  ];
 
-  const [selectedVendor, setSelectedVendor] = useState("");
-  const [selectedModel, setSelectedModel] = useState("");
+  const [filterData, setFilterData] = useState({
+    vendor: "",
+    model: "",
+    city: "",
+  });
 
-  const handleVendorChange = (e) => {
-    setSelectedVendor(e.target.value);
-    setSelectedModel("");
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFilterData({ ...filterData, [name]: value });
   };
-
-  const handleModelChange = (e) => {
-    setSelectedModel(e.target.value);
-  };
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
 
   return (
-    <div
-      style={{
-        paddingLeft: "100px",
-        paddingRight: "100px",
-        margin: "0 auto",
-        boxSizing: "border-box",
-      }}
-    >
-      <select value={selectedVendor} onChange={handleVendorChange}>
+    <div className="filters" style={{ padding: "0" }}>
+      <select name="vendor" value={filterData.vendor} onChange={handleChange}>
         <option value="">Marka</option>
         {carVendors.map((vendor, index) => (
           <option key={index} value={vendor}>
@@ -130,20 +134,29 @@ export default function CarFilter({ currentCar, setCurrentCar }) {
         ))}
       </select>
       <select
-        value={selectedModel}
-        onChange={handleModelChange}
-        disabled={!selectedVendor}
+        name="model"
+        value={filterData.model}
+        onChange={handleChange}
+        disabled={!filterData.vendor}
       >
         <option value="">Model</option>
-        {selectedVendor && carModels[selectedVendor] ? (
-          carModels[selectedVendor].map((model, index) => (
+        {filterData.vendor && carModels[filterData.vendor] ? (
+          carModels[filterData.vendor].map((model, index) => (
             <option key={index} value={model}>
               {model}
             </option>
           ))
         ) : (
-          <option disabled={!selectedVendor}>Select a brand first</option>
+          <option disabled={!filterData.vendor}>Select a brand first</option>
         )}
+      </select>
+      <select name="city" value={filterData.city} onChange={handleChange}>
+        <option value="">City</option>
+        {azerbaijaniCities.map((city, index) => (
+          <option key={index} value={city}>
+            {city}
+          </option>
+        ))}
       </select>
     </div>
   );
