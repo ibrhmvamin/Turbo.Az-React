@@ -7,13 +7,12 @@ const api = axios.create({
 
 export const fetchCarById = createAsyncThunk(
   "cars/fetchCarById",
-  async (id, { rejectWithValue }) => {
+  async (id) => {
     try {
-      const response = await axios.get(`/cars/${id}`);
-      console.log("response", response);
+      const response = await api.get(`/cars/${id}`);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      console.log(error);
     }
   }
 );
@@ -52,6 +51,18 @@ const carSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+
+      .addCase(fetchCarById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchCarById.fulfilled, (state, action) => {
+        state.car = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchCarById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
       .addCase(fetchCars.pending, (state) => {
         state.loading = true;
       })

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCarById } from "../features/carSlice";
+import "./CarDetail.css";
 
 export default function CarDetail() {
   const { id } = useParams();
@@ -14,11 +15,107 @@ export default function CarDetail() {
     }
   }, [dispatch, id]);
 
-  console.log("car", car);
-
   return (
-    <div className="car-detail">
-      <p>{car.id}</p>
-    </div>
+    <>
+      <div className="car-detail">
+        <div>
+          <h2>
+            {car.Mark} {car.Vendor},{car.EngineVolume} L, {car.Year} il,{" "}
+            {car.Miles} km
+          </h2>
+          <div className="image-container">
+            {car.Images && car.Images.length > 0 ? (
+              <img src={car.Images[0]} alt={car.Mark} />
+            ) : (
+              <p>No image available</p>
+            )}
+          </div>
+        </div>
+        <div className="description">
+          <h3>Price: {car.Price} AZN</h3>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            {car.IsCredit && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  backgroundColor: "white",
+                  marginRight: "10px",
+                }}
+              >
+                <img
+                  style={{
+                    backgroundColor: "#f5a623",
+                    marginRight: "3px",
+                    padding: "1px",
+                  }}
+                  className="icons"
+                  src="https://turbo.azstatic.com/assets/mobile/sprites/main-58e33429b460b8954f9774b6b79d7d004653d7779037c09449f0a6ca33425359.svg#loan"
+                  alt="credit"
+                />
+                <p style={{ margin: "0", fontSize: "14px" }}>Kredit</p>
+              </div>
+            )}
+            {car.IsBarter && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  backgroundColor: "white",
+                }}
+              >
+                <img
+                  style={{
+                    backgroundColor: "rgb(118, 200, 28)",
+                    marginRight: "3px",
+                    padding: "1px",
+                  }}
+                  className="icons"
+                  src="https://turbo.azstatic.com/assets/mobile/sprites/main-58e33429b460b8954f9774b6b79d7d004653d7779037c09449f0a6ca33425359.svg#barter"
+                  alt="credit"
+                />
+                <p style={{ margin: "0", fontSize: "14px" }}>Barter</p>
+              </div>
+            )}
+          </div>
+          <div>
+            <p>{car.CarsOwner}</p>
+            <p style={{ color: "#8d94ad" }}>{car.City}</p>
+            {car.IsCredit && (
+              <button className="with-credit">% Hissə-Hissə al</button>
+            )}
+          </div>
+          <button className="phone">
+            Nömrəni göstər <br />{" "}
+            <span style={{ fontSize: "19px" }}>{car.OwnerPhone}</span>
+          </button>
+        </div>
+      </div>
+      <div className="carInfo">
+        <div className="left">
+          <div className="car-statistics">
+            <div>
+              <p>Şəhər : {car.City}</p>
+              <p>Marka : {car.Mark}</p>
+              <p>Model : {car.Model}</p>
+              <p>Buraxılış ili : {car.Year}</p>
+            </div>
+            <div>
+              <p>Ban növü : {car.BanType}</p>
+              <p>Mühərrik : {car.EngineVolume}</p>
+              <p>Yürüş : {car.Miles}</p>
+              <p>Sürətlər qutusu : {car.GearBox}</p>
+            </div>
+          </div>
+        </div>
+        <div className="right">
+          <p>{car.Description}</p>
+        </div>
+      </div>
+    </>
   );
 }

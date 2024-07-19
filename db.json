@@ -8,14 +8,15 @@
       "EngineVolume": "4.8",
       "GearBox": "Automatic",
       "BanType": "Sedan",
-      "Description": "Masin ela veziyyetdedi",
+      "Description": "Rəngi Tünd Göydü.Maşın təzə gəlib İdeal veziyyetdə ORİGİNAL PRABEQ BEZKRASKA 100 Faiz !!! Zavod M Tech B47 Səssiz Mühərrik Pro Edition Versiya.. 3 Knopka , Arxa Çəkən , 3 Rejimli Dəyişən Pribor.Hedup Display , Adaptiv Laser Ön Faralar 360 Kamera Distronika Zolaq Tanıma Ön Maşını İzləmə Yol Nişanlarını Tanıma Avtomatik Tormuzlanma Zavod Ambiance İşıqlar Böyük Coccik Auto Hold Auto Parking Arxa Oturacaq Qızdırıcı arxa qabaq.Bu Komplektasiyada F10 azdı. NÖMRƏSİZ Satılır.",
       "Miles": 103000,
       "City": "Bakı",
       "IsCredit": null,
       "IsBarter": true,
-      "CarsOwner": "aminibrahimov52@gmail.com",
+      "CarsOwner": "Ayxan",
+      "OwnerPhone": "055-555-55-55",
       "Images": [
-        "https://images.prismic.io/carwow/a08ee31b-4a98-4fdf-a91f-b4f84b8e0008_Audi_R8_Front_%C2%BE_moving.jpg?auto=format&cs=tinysrgb&fit=crop&q=60&w=750",
+        "https://turbo.azstatic.com/uploads/f660x496/2024%2F06%2F29%2F21%2F36%2F05%2F26575425-87fc-44b8-955a-ac5110207b34%2F73879_Llsf7HE7T9ZVmMOurKtMGQ.jpg",
         "https://images.prismic.io/carwow/a08ee31b-4a98-4fdf-a91f-b4f84b8e0008_Audi_R8_Front_%C2%BE_moving.jpg?auto=format&cs=tinysrgb&fit=crop&q=60&w=750"
       ],
       "id": "b720"
@@ -23,7 +24,6 @@
     {
       "Mark": "Porsche",
       "Model": "Panamera",
-      "Color": "Goy",
       "Year": 2015,
       "Price": 94350,
       "EngineVolume": "4.8",
@@ -34,7 +34,8 @@
       "City": "Bakı",
       "IsCredit": null,
       "IsBarter": null,
-      "CarsOwner": "aminibrahimov52@gmail.com",
+      "CarsOwner": "Murad",
+      "OwnerPhone": "051-348-87-88",
       "Images": [
         "https://images.prismic.io/carwow/a08ee31b-4a98-4fdf-a91f-b4f84b8e0008_Audi_R8_Front_%C2%BE_moving.jpg?auto=format&cs=tinysrgb&fit=crop&q=60&w=750"
       ],
@@ -43,7 +44,6 @@
     {
       "Mark": "Porsche",
       "Model": "Panamera",
-      "Color": "Goy",
       "Year": 2015,
       "Price": 94350,
       "EngineVolume": "4.8",
@@ -54,7 +54,8 @@
       "City": "Bakı",
       "IsCredit": null,
       "IsBarter": null,
-      "CarsOwner": "aminibrahimov52@gmail.com",
+      "CarsOwner": "Cavid",
+      "OwnerPhone": "077-717-67-67",
       "Images": [
         "https://images.prismic.io/carwow/a08ee31b-4a98-4fdf-a91f-b4f84b8e0008_Audi_R8_Front_%C2%BE_moving.jpg?auto=format&cs=tinysrgb&fit=crop&q=60&w=750"
       ],
@@ -72,9 +73,10 @@
       "Description": "Ela",
       "Miles": "20000",
       "City": "Baki",
-      "IsCredit": "false",
+      "IsCredit": "true",
       "IsBarter": "false",
       "CarsOwner": "Amin",
+      "OwnerPhone": "051-348-88-88",
       "Images": [
         "https://images.prismic.io/carwow/a08ee31b-4a98-4fdf-a91f-b4f84b8e0008_Audi_R8_Front_%C2%BE_moving.jpg?auto=format&cs=tinysrgb&fit=crop&q=60&w=750",
         ""
