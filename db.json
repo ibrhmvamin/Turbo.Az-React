@@ -81,6 +81,27 @@
         "https://images.prismic.io/carwow/a08ee31b-4a98-4fdf-a91f-b4f84b8e0008_Audi_R8_Front_%C2%BE_moving.jpg?auto=format&cs=tinysrgb&fit=crop&q=60&w=750",
         ""
       ]
+    },
+    {
+      "id": "5583",
+      "Mark": "KIA",
+      "Model": "K5",
+      "Year": "2014",
+      "Price": "28900",
+      "EngineVolume": "2.0",
+      "GearBox": "Avtomat",
+      "BanType": "Sedan",
+      "Description": "HYBRİD!!! EKSKLUZIV KOMPLEKTASIYA!\nMövcud olan ən full komplektasiya, sifarişlə yığılıb!\n2 sadə motor, sadə karobka!\nOrtalama yanacaq sərfiyyatı 7-8 litr. (Aİ 92)\nHər iki tərəf ön oturacaqların isidilməsi və soyudulması\nSürücü oturacağının yaddaşı və ağıllı giriş-çıxış funksiyaları\nHər iki ön oturacaqların elektron tənzimlənməsi\nArxa oturacaqlarin isidilməsi\nSükan qızdırıcısı\nElektron rucnoy\nAUTO HOLD\nAvto parking (özü özünə parklama)",
+      "Miles": "69500",
+      "City": "Baki",
+      "IsCredit": "true",
+      "IsBarter": "false",
+      "CarsOwner": "Cəlil",
+      "OwnerPhone": "077 777 13 19",
+      "Images": [
+        "https://turbo.azstatic.com/uploads/f660x496/2024%2F07%2F15%2F10%2F49%2F19%2Fdca883c8-5134-44d3-95ae-215a4161aa34%2F73879_Llsf7HE7T9ZVmMOurKtMGQ.jpg",
+        ""
+      ]
     }
   ]
 }

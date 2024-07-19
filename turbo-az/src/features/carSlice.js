@@ -47,8 +47,24 @@ const carSlice = createSlice({
     car: {},
     loading: false,
     error: null,
+    filter: {
+      vendor: "",
+      model: "",
+      city: "",
+      minPrice: "",
+      maxPrice: "",
+      banType: "",
+      minYear: "",
+      maxYear: "",
+      isCredit: false,
+      isBarter: false,
+    },
   },
-  reducers: {},
+  reducers: {
+    setFilter: (state, action) => {
+      state.filter = { ...state.filter, ...action.payload };
+    },
+  },
   extraReducers: (builder) => {
     builder
 
@@ -91,4 +107,5 @@ const carSlice = createSlice({
   },
 });
 
+export const { setFilter } = carSlice.actions;
 export default carSlice.reducer;

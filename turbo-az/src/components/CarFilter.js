@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./CarFilter.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilter } from "../features/carSlice";
 
-export default function CarFilter({ currentCar, setCurrentCar }) {
+export default function CarFilter() {
   const carVendors = [
     "Toyota",
     "BMW",
@@ -91,7 +93,7 @@ export default function CarFilter({ currentCar, setCurrentCar }) {
   };
 
   const azerbaijaniCities = [
-    "Baku",
+    "Baki",
     "Ganja",
     "Sumqayit",
     "Lankaran",
@@ -112,23 +114,48 @@ export default function CarFilter({ currentCar, setCurrentCar }) {
     "Tovuz",
   ];
 
+  const banTypes = [
+    "Limuzin",
+    "Sedan",
+    "Minivan",
+    "Off-Road",
+    "Motosiklet",
+    "Touring",
+  ];
+
   const [filterData, setFilterData] = useState({
     vendor: "",
     model: "",
     city: "",
+    minPrice: "",
+    maxPrice: "",
+    banType: "",
+    minYear: "",
+    maxYear: "",
+    IsCredit: "",
+    IsBarter: "",
   });
+
+  const filteredCars = useSelector((state) => state.cars.filter);
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilterData({ ...filterData, [name]: value });
   };
 
+  function handleFilterClick() {
+    dispatch(setFilter(filterData));
+    console.log("filteredCars", filteredCars);
+  }
+
   return (
     <div className="filters" style={{ padding: "0" }}>
       <select name="vendor" value={filterData.vendor} onChange={handleChange}>
         <option value="">Marka</option>
-        {carVendors.map((vendor, index) => (
-          <option key={index} value={vendor}>
+        {carVendors.map((vendor) => (
+          <option key={vendor.id} value={vendor}>
             {vendor}
           </option>
         ))}
@@ -141,8 +168,8 @@ export default function CarFilter({ currentCar, setCurrentCar }) {
       >
         <option value="">Model</option>
         {filterData.vendor && carModels[filterData.vendor] ? (
-          carModels[filterData.vendor].map((model, index) => (
-            <option key={index} value={model}>
+          carModels[filterData.vendor].map((model) => (
+            <option key={model.id} value={model}>
               {model}
             </option>
           ))
@@ -152,12 +179,65 @@ export default function CarFilter({ currentCar, setCurrentCar }) {
       </select>
       <select name="city" value={filterData.city} onChange={handleChange}>
         <option value="">City</option>
-        {azerbaijaniCities.map((city, index) => (
-          <option key={index} value={city}>
+        {azerbaijaniCities.map((city) => (
+          <option key={city.id} value={city}>
             {city}
           </option>
         ))}
       </select>
+      <div className="price-range">
+        <input
+          name="minPrice"
+          type="number"
+          value={filterData.minPrice}
+          onChange={handleChange}
+          placeholder="Qiymət min."
+          min="0"
+        />
+        <input
+          name="maxPrice"
+          type="number"
+          value={filterData.maxPrice}
+          onChange={handleChange}
+          placeholder="maks."
+          min="0"
+        />
+      </div>
+      <select name="banType" value={filterData.banType} onChange={handleChange}>
+        <option value="">Ban növü</option>
+        {banTypes.map((ban) => (
+          <option key={ban.id} value={ban}>
+            {ban}
+          </option>
+        ))}
+      </select>
+      <button className="credit-barter" value={filterData.IsCredit}>
+        Kredit
+      </button>
+      <button className="credit-barter" value={filterData.IsBarter}>
+        Barter
+      </button>
+      <div className="price-range">
+        <input
+          name="minYear"
+          type="number"
+          value={filterData.minYear}
+          onChange={handleChange}
+          placeholder="İl, min."
+          min="0"
+        />
+        <input
+          name="maxYear"
+          type="number"
+          value={filterData.maxYear}
+          onChange={handleChange}
+          placeholder="maks."
+          min="0"
+        />
+      </div>
+      <button onClick={handleFilterClick} className="filter-btn">
+        Elanları göstər
+      </button>
     </div>
   );
 }

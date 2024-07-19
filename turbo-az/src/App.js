@@ -3,11 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Provider } from "react-redux";
-import {
-  faHeart,
-  faUser,
-  faCirclePlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUser, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import { store } from "./app/store";
@@ -37,14 +33,8 @@ function App() {
                 <p>Yardım</p>
                 <p>RU</p>
                 <div>
-                  <div>
-                    <FontAwesomeIcon icon={faHeart} />
-                    <p>Seçilmişlər</p>
-                  </div>
-                  <div>
-                    <FontAwesomeIcon icon={faUser} />
-                    <p>Giriş</p>
-                  </div>
+                  <FontAwesomeIcon icon={faUser} />
+                  <p>Giriş</p>
                 </div>
               </div>
             </div>

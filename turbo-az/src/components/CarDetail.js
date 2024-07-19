@@ -15,6 +15,8 @@ export default function CarDetail() {
     }
   }, [dispatch, id]);
 
+  function handleDeleteClick() {}
+
   return (
     <>
       <div className="car-detail">
@@ -115,6 +117,12 @@ export default function CarDetail() {
         <div className="right">
           <p>{car.Description}</p>
         </div>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button className="edit-btn">Edit</button>
+        <button onClick={handleDeleteClick} className="delete-btn">
+          Delete
+        </button>
       </div>
     </>
   );

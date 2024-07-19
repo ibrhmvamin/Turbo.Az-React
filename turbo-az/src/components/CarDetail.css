@@ -96,3 +96,13 @@ h2 {
 .with-credit:hover {
   background-color: rgb(172, 13, 19);
 }
+
+.edit-btn,
+.delete-btn {
+  background-color: #ca1016;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 6px 13px;
+  margin: 10px;
+}
