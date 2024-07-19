@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
-import "../App.css";
-import { useDispatch } from "react-redux";
-import { addCar } from "../features/carSlice";
-import "./CarForm.css";
+import "./UpdateCar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router";
+import { updateCar, fetchCarById } from "../features/carSlice";
 
-export default function CarForm({ currentCar, setCurrentCar }) {
+export default function UpdateCar() {
   const validatePhone = (phone) => {
-    const phoneRegex = /^(?:050|051|055|070|077|099|012)\d{7}$/;
+    const phoneRegex = /^(?:050|051|055|070|077|099|012|010)\d{7}$/;
     return phoneRegex.test(phone);
   };
 
-  const [errors, setErrors] = useState({});
+  const navigation = useNavigate();
 
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const [errors, setErrors] = useState({});
+  const car = useSelector((state) => state.cars.car);
   const [formData, setFormData] = useState({
     Mark: "",
     Model: "",
@@ -23,24 +28,31 @@ export default function CarForm({ currentCar, setCurrentCar }) {
     Description: "",
     Miles: "",
     City: "",
-    IsCredit: "",
-    IsBarter: "",
+    IsCredit: false,
+    IsBarter: false,
     CarsOwner: "",
     OwnerPhone: "",
     Images: "",
   });
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchCarById(id)).catch((err) => console.err(err.message));
+    }
+  }, [dispatch, id]);
 
   useEffect(() => {
-    if (currentCar) {
-      setFormData(currentCar);
+    if (car) {
+      setFormData(car);
     }
-  }, [currentCar]);
+  }, [car]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
   };
 
   const handleSubmit = (e) => {
@@ -56,26 +68,8 @@ export default function CarForm({ currentCar, setCurrentCar }) {
       return;
     }
 
-    dispatch(addCar(formData));
-
-    setFormData({
-      Mark: "",
-      Model: "",
-      Year: "",
-      Price: "",
-      EngineVolume: "",
-      GearBox: "",
-      BanType: "",
-      Description: "",
-      Miles: "",
-      City: "",
-      IsCredit: "",
-      IsBarter: "",
-      CarsOwner: "",
-      OwnerPhone: "",
-      Images: ["", ""],
-    });
-    setCurrentCar(null);
+    dispatch(updateCar({ id, car: formData }));
+    navigation(`/cars/${car.id}`);
   };
 
   return (
@@ -176,7 +170,7 @@ export default function CarForm({ currentCar, setCurrentCar }) {
           name="OwnerPhone"
           value={formData.OwnerPhone}
           onChange={handleChange}
-          placeholder="OwnerPhone"
+          placeholder="Owner Phone"
         />
         {errors.OwnerPhone && <p className="error">{errors.OwnerPhone}</p>}
         <input
@@ -184,11 +178,10 @@ export default function CarForm({ currentCar, setCurrentCar }) {
           name="Images"
           value={formData.Images}
           onChange={handleChange}
-          placeholder="Image"
+          placeholder="Image URLs"
         />
-
         <div>
-          <button type="submit">Add Car</button>
+          <button type="submit">Update Car</button>
         </div>
       </div>
     </form>

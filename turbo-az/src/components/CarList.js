@@ -43,7 +43,7 @@ export default function CarList() {
             />
             <Link style={{ textDecoration: "none" }} to={`/cars/${car.id}`}>
               {car.Images && car.Images.length > 0 && (
-                <img src={car.Images[0]} alt="car" />
+                <img src={car.Images} alt="car" />
               )}
               <div>
                 <h3>{car.Price} AZN</h3>

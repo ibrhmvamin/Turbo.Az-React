@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCarById } from "../features/carSlice";
+import { deleteCar, fetchCarById } from "../features/carSlice";
 import "./CarDetail.css";
 
 export default function CarDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const car = useSelector((state) => state.cars.car);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -15,7 +16,15 @@ export default function CarDetail() {
     }
   }, [dispatch, id]);
 
-  function handleDeleteClick() {}
+  function handleDeleteClick() {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete ${car.Vendor} ${car.Model}?`
+    );
+    if (confirmed) {
+      dispatch(deleteCar(id));
+      navigate("/");
+    }
+  }
 
   return (
     <>
@@ -27,7 +36,7 @@ export default function CarDetail() {
           </h2>
           <div className="image-container">
             {car.Images && car.Images.length > 0 ? (
-              <img src={car.Images[0]} alt={car.Mark} />
+              <img src={car.Images} alt={car.Mark} />
             ) : (
               <p>No image available</p>
             )}
@@ -78,7 +87,7 @@ export default function CarDetail() {
                   }}
                   className="icons"
                   src="https://turbo.azstatic.com/assets/mobile/sprites/main-58e33429b460b8954f9774b6b79d7d004653d7779037c09449f0a6ca33425359.svg#barter"
-                  alt="credit"
+                  alt="barter"
                 />
                 <p style={{ margin: "0", fontSize: "14px" }}>Barter</p>
               </div>
@@ -119,7 +128,9 @@ export default function CarDetail() {
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <button className="edit-btn">Edit</button>
+        <Link to={`/update-car/${car.id}`}>
+          <button className="edit-btn">Edit</button>
+        </Link>
         <button onClick={handleDeleteClick} className="delete-btn">
           Delete
         </button>

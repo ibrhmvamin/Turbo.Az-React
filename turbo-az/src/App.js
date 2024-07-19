@@ -10,6 +10,7 @@ import { store } from "./app/store";
 import NewAnnouncement from "./pages/NewAnnouncement";
 import Favorites from "./pages/Favorites";
 import CarDetail from "./components/CarDetail";
+import UpdateCar from "./pages/UpdateCar";
 function App() {
   return (
     <Provider store={store}>
@@ -66,7 +67,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/new-car" element={<NewAnnouncement />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route exact path="/cars/:id" element={<CarDetail />}></Route>
+            <Route path="/update-car/:id" element={<UpdateCar />} />
+            <Route exact path="/cars/:id" element={<CarDetail />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
