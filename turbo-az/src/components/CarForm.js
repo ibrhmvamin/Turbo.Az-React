@@ -6,7 +6,7 @@ import "./CarForm.css";
 
 export default function CarForm({ currentCar, setCurrentCar }) {
   const validatePhone = (phone) => {
-    const phoneRegex = /^(?:050|051|055|070|077|099|012)\d{7}$/;
+    const phoneRegex = /^(?:050|051|055|070|077|099|012|010)\d{7}$/;
     return phoneRegex.test(phone);
   };
 

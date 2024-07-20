@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import "../components/CarList.css";
+import { Link } from "react-router-dom";
 
 export default function Favorites() {
   const [favCars, setFavCars] = useState(() => {
@@ -70,9 +71,6 @@ export default function Favorites() {
         <ul className="car-list">
           {favoriteCarDetails.map((car) => (
             <li className="car" key={car.id}>
-              {car.Images && car.Images.length > 0 && (
-                <img src={car.Images[0]} alt="car" />
-              )}
               <FontAwesomeIcon
                 onClick={() => toggleLike(car.id)}
                 icon={faHeart}
@@ -80,22 +78,27 @@ export default function Favorites() {
                   favCars.includes(car.id) ? "liked" : ""
                 }`}
               />
-              <div>
-                <h3>{car.Price}</h3>
-                <p
-                  style={{
-                    lineHeight: "19px",
-                    margin: "3px 0",
-                  }}
-                >
-                  {car.Mark} {car.Model}
-                </p>
-                <div className="texts">
-                  <p>{car.Year}</p>
-                  <p>{car.EngineVolume}</p>
-                  <p>{car.Miles}</p>
+              <Link style={{ textDecoration: "none" }} to={`/cars/${car.id}`}>
+                {car.Images && car.Images.length > 0 && (
+                  <img src={car.Images} alt="car" />
+                )}
+                <div>
+                  <h3>{car.Price}</h3>
+                  <p
+                    style={{
+                      lineHeight: "19px",
+                      margin: "3px 0",
+                    }}
+                  >
+                    {car.Mark} {car.Model}
+                  </p>
+                  <div className="texts">
+                    <p>{car.Year}</p>
+                    <p>{car.EngineVolume}</p>
+                    <p>{car.Miles}</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </li>
           ))}
         </ul>

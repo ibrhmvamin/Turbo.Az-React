@@ -136,26 +136,25 @@ export default function CarFilter() {
     IsBarter: "",
   });
 
-  const filteredCars = useSelector((state) => state.cars.filter);
-
   const dispatch = useDispatch();
+  const filteredCars = useSelector((state) => state.cars.filter);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilterData({ ...filterData, [name]: value });
   };
 
-  function handleFilterClick() {
+  const handleFilterClick = () => {
     dispatch(setFilter(filterData));
     console.log("filteredCars", filteredCars);
-  }
+  };
 
   return (
     <div className="filters" style={{ padding: "0" }}>
       <select name="vendor" value={filterData.vendor} onChange={handleChange}>
         <option value="">Marka</option>
-        {carVendors.map((vendor) => (
-          <option key={vendor.id} value={vendor}>
+        {carVendors.map((vendor, index) => (
+          <option key={index} value={vendor}>
             {vendor}
           </option>
         ))}
@@ -168,8 +167,8 @@ export default function CarFilter() {
       >
         <option value="">Model</option>
         {filterData.vendor && carModels[filterData.vendor] ? (
-          carModels[filterData.vendor].map((model) => (
-            <option key={model.id} value={model}>
+          carModels[filterData.vendor].map((model, index) => (
+            <option key={index} value={model}>
               {model}
             </option>
           ))
@@ -179,8 +178,8 @@ export default function CarFilter() {
       </select>
       <select name="city" value={filterData.city} onChange={handleChange}>
         <option value="">City</option>
-        {azerbaijaniCities.map((city) => (
-          <option key={city.id} value={city}>
+        {azerbaijaniCities.map((city, index) => (
+          <option key={index} value={city}>
             {city}
           </option>
         ))}
@@ -205,8 +204,8 @@ export default function CarFilter() {
       </div>
       <select name="banType" value={filterData.banType} onChange={handleChange}>
         <option value="">Ban növü</option>
-        {banTypes.map((ban) => (
-          <option key={ban.id} value={ban}>
+        {banTypes.map((ban, index) => (
+          <option key={index} value={ban}>
             {ban}
           </option>
         ))}
