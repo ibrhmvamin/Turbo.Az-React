@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CarFilter.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../features/carSlice";
@@ -139,13 +139,16 @@ export default function CarFilter() {
   const dispatch = useDispatch();
   const filteredCars = useSelector((state) => state.cars.filter);
 
+  useEffect(() => {
+    dispatch(setFilter(filterData));
+  }, [filterData, dispatch]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilterData({ ...filterData, [name]: value });
   };
 
   const handleFilterClick = () => {
-    dispatch(setFilter(filterData));
     console.log("filteredCars", filteredCars);
   };
 
