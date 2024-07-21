@@ -91,24 +91,6 @@
       "Images": "https://turbo.azstatic.com/uploads/f660x496/2024%2F06%2F12%2F19%2F33%2F06%2F74d902dc-029d-44bd-acb9-a8f5ebafab7a%2F12183_ogtQftp0VNM0b8HrfrDIcQ.jpg"
     },
     {
-      "id": "1234",
-      "Mark": "Tesla",
-      "Model": "Model S",
-      "Year": "2021",
-      "Price": "85000",
-      "EngineVolume": "Electric",
-      "GearBox": "Avtomat",
-      "BanType": "Sedan",
-      "Description": "Tesla Model S Plaid, 2021. Full self-driving capabilities, 0-100 km/h in 1.99 seconds, 396 miles range, premium interior with yoke steering.",
-      "Miles": "15000",
-      "City": "Baki",
-      "IsCredit": true,
-      "IsBarter": false,
-      "CarsOwner": "Elon",
-      "OwnerPhone": "0551234567",
-      "Images": "https://turbo.azstatic.com/uploads/f660x496/2023%2F11%2F07%2F12%2F24%2F53%2F9a526b2d-7a15-4d23-97cc-2e3d85c28795%2F3652_1tpWIS8XAR47D3PiROKKMQ.jpg"
-    },
-    {
       "id": "5678",
       "Mark": "Ferrari",
       "Model": "458 Italia",
@@ -179,6 +161,42 @@
       "CarsOwner": "Raul",
       "OwnerPhone": "0102220252",
       "Images": "https://turbo.azstatic.com/uploads/f660x496/2024%2F06%2F16%2F10%2F21%2F02%2F79bfd8bf-d940-496d-b85f-2cdc86822ec0%2F73879_Llsf7HE7T9ZVmMOurKtMGQ.jpg"
+    },
+    {
+      "id": "74c0",
+      "Mark": "Toyota",
+      "Model": "Corolla",
+      "Year": "2022",
+      "Price": "40000",
+      "EngineVolume": "2.0",
+      "GearBox": "Avtomat",
+      "BanType": "Sedan",
+      "Description": "Ela masindi.Bez kraskadi",
+      "Miles": "30000",
+      "City": "Baki",
+      "IsCredit": true,
+      "IsBarter": false,
+      "CarsOwner": "Eli",
+      "OwnerPhone": "0505323232",
+      "Images": "https://turbo.azstatic.com/uploads/full/2024%2F07%2F05%2F17%2F24%2F27%2Fbc5f8882-eae4-4a09-8b1a-1d10198c0be8%2F64677_XEKjwmAveF1J7d42VxCbsw.jpg"
+    },
+    {
+      "id": "3376",
+      "Mark": "Ford",
+      "Model": "Mustang",
+      "Year": "2022",
+      "Price": "40000",
+      "EngineVolume": "2.0",
+      "GearBox": "Avtomat",
+      "BanType": "Sedan",
+      "Description": "fewsfrsdff",
+      "Miles": "30000",
+      "City": "Baki",
+      "IsCredit": true,
+      "IsBarter": true,
+      "CarsOwner": "Eli",
+      "OwnerPhone": "0505323232",
+      "Images": "https://turbo.azstatic.com/uploads/full/2024%2F07%2F05%2F17%2F24%2F27%2Fbc5f8882-eae4-4a09-8b1a-1d10198c0be8%2F64677_XEKjwmAveF1J7d42VxCbsw.jpg"
     }
   ]
 }

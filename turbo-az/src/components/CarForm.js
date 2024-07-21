@@ -10,6 +10,94 @@ export default function CarForm({ currentCar, setCurrentCar }) {
     return phoneRegex.test(phone);
   };
 
+  const carVendors = [
+    "Toyota",
+    "BMW",
+    "Porsche",
+    "Ford",
+    "Chevrolet",
+    "Honda",
+    "Nissan",
+    "Audi",
+    "Mercedes-Benz",
+    "Volkswagen",
+    "Subaru",
+    "Lexus",
+    "Mazda",
+    "Hyundai",
+    "Kia",
+    "Volvo",
+    "Jeep",
+    "Tesla",
+    "Ferrari",
+    "Lamborghini",
+  ];
+
+  const carModels = {
+    Toyota: ["Camry", "Corolla", "Rav4", "Highlander", "Prius", "Land Cruiser"],
+    BMW: ["X5", "3 Series", "X3", "7 Series", "X1", "5 Series"],
+    Porsche: ["911", "Cayenne", "Panamera", "Macan", "Boxster", "Taycan"],
+    Ford: ["Mustang", "F-150", "Escape", "Explorer", "Focus", "Edge"],
+    Chevrolet: [
+      "Silverado",
+      "Tahoe",
+      "Malibu",
+      "Equinox",
+      "Camaro",
+      "Traverse",
+    ],
+    Honda: ["Accord", "Civic", "CR-V", "Pilot", "Odyssey", "Fit"],
+    Nissan: ["Altima", "Maxima", "Rogue", "Sentra", "Pathfinder", "Frontier"],
+    Audi: ["A4", "Q5", "A3", "Q7", "A6", "Q3"],
+    "Mercedes-Benz": [
+      "C-Class",
+      "E-Class",
+      "GLC",
+      "S-Class",
+      "G-Class",
+      "A-Class",
+    ],
+    Volkswagen: ["Jetta", "Passat", "Tiguan", "Atlas", "Golf", "Arteon"],
+    Subaru: ["Outback", "Forester", "Impreza", "Crosstrek", "Legacy", "Ascent"],
+    Lexus: ["RX", "IS", "NX", "ES", "LS", "GX"],
+    Mazda: ["CX-5", "Mazda3", "CX-9", "MX-5", "Mazda6", "CX-30"],
+    Hyundai: ["Sonata", "Tucson", "Santa Fe", "Elantra", "Kona", "Palisade"],
+    Kia: ["Sorento", "Optima", "Sportage", "Telluride", "Forte", "Soul"],
+    Volvo: ["XC90", "XC60", "S60", "V90", "XC40", "S90"],
+    Jeep: [
+      "Grand Cherokee",
+      "Wrangler",
+      "Cherokee",
+      "Compass",
+      "Renegade",
+      "Gladiator",
+    ],
+    Tesla: [
+      "Model S",
+      "Model 3",
+      "Model X",
+      "Model Y",
+      "Roadster",
+      "Cybertruck",
+    ],
+    Ferrari: [
+      "488 GTB",
+      "812 Superfast",
+      "F8 Tributo",
+      "Portofino",
+      "SF90 Stradale",
+      "Roma",
+    ],
+    Lamborghini: [
+      "Huracan",
+      "Aventador",
+      "Urus",
+      "Sian",
+      "Centenario",
+      "Diablo",
+    ],
+  };
+
   const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
@@ -23,8 +111,8 @@ export default function CarForm({ currentCar, setCurrentCar }) {
     Description: "",
     Miles: "",
     City: "",
-    IsCredit: "",
-    IsBarter: "",
+    IsCredit: false,
+    IsBarter: false,
     CarsOwner: "",
     OwnerPhone: "",
     Images: "",
@@ -39,8 +127,11 @@ export default function CarForm({ currentCar, setCurrentCar }) {
   }, [currentCar]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
   };
 
   const handleSubmit = (e) => {
@@ -69,11 +160,11 @@ export default function CarForm({ currentCar, setCurrentCar }) {
       Description: "",
       Miles: "",
       City: "",
-      IsCredit: "",
-      IsBarter: "",
+      IsCredit: false,
+      IsBarter: false,
       CarsOwner: "",
       OwnerPhone: "",
-      Images: ["", ""],
+      Images: "",
     });
     setCurrentCar(null);
   };
@@ -81,20 +172,41 @@ export default function CarForm({ currentCar, setCurrentCar }) {
   return (
     <form onSubmit={handleSubmit} className="car-form">
       <div className="form-left">
-        <input
+        <select
           required
           name="Mark"
           value={formData.Mark}
           onChange={handleChange}
-          placeholder="Marka"
-        />
-        <input
+        >
+          <option value="">Select Brand</option>
+          {carVendors.map((vendor, index) => (
+            <option key={index} value={vendor}>
+              {vendor}
+            </option>
+          ))}
+        </select>
+
+        <select
           required
           name="Model"
           value={formData.Model}
           onChange={handleChange}
-          placeholder="Model"
-        />
+          disabled={!formData.Mark}
+        >
+          <option value="">Select Model</option>
+          {formData.Mark && carModels[formData.Mark] ? (
+            carModels[formData.Mark].map((model, index) => (
+              <option key={index} value={model}>
+                {model}
+              </option>
+            ))
+          ) : (
+            <option value="" disabled>
+              Select a brand first
+            </option>
+          )}
+        </select>
+
         <input
           required
           name="Year"
@@ -123,13 +235,26 @@ export default function CarForm({ currentCar, setCurrentCar }) {
           onChange={handleChange}
           placeholder="Gear Box"
         />
-        <input
+        <select
           required
           name="BanType"
           value={formData.BanType}
           onChange={handleChange}
-          placeholder="Ban Type"
-        />
+        >
+          <option value="">Select Ban Type</option>
+          {[
+            "Limuzin",
+            "Sedan",
+            "Minivan",
+            "Off-Road",
+            "Motosiklet",
+            "Touring",
+          ].map((ban, index) => (
+            <option key={index} value={ban}>
+              {ban}
+            </option>
+          ))}
+        </select>
         <textarea
           name="Description"
           value={formData.Description}
@@ -152,31 +277,37 @@ export default function CarForm({ currentCar, setCurrentCar }) {
           onChange={handleChange}
           placeholder="City"
         />
-        <input
-          name="IsCredit"
-          value={formData.IsCredit}
-          onChange={handleChange}
-          placeholder="Is Credit"
-        />
-        <input
-          name="IsBarter"
-          value={formData.IsBarter}
-          onChange={handleChange}
-          placeholder="Is Barter"
-        />
+        <label>
+          <input
+            name="IsCredit"
+            type="checkbox"
+            checked={formData.IsCredit}
+            onChange={handleChange}
+          />
+          Credit
+        </label>
+        <label>
+          <input
+            name="IsBarter"
+            type="checkbox"
+            checked={formData.IsBarter}
+            onChange={handleChange}
+          />
+          Barter
+        </label>
         <input
           required
           name="CarsOwner"
           value={formData.CarsOwner}
           onChange={handleChange}
-          placeholder="Cars Owner"
+          placeholder="Car Owner"
         />
         <input
           required
           name="OwnerPhone"
           value={formData.OwnerPhone}
           onChange={handleChange}
-          placeholder="OwnerPhone"
+          placeholder="Owner Phone"
         />
         {errors.OwnerPhone && <p className="error">{errors.OwnerPhone}</p>}
         <input
@@ -184,7 +315,7 @@ export default function CarForm({ currentCar, setCurrentCar }) {
           name="Images"
           value={formData.Images}
           onChange={handleChange}
-          placeholder="Image"
+          placeholder="Image URL"
         />
 
         <div>

@@ -46,19 +46,7 @@ const carSlice = createSlice({
     cars: [],
     car: {},
     loading: false,
-    error: null,
-    filter: {
-      vendor: "",
-      model: "",
-      city: "",
-      minPrice: "",
-      maxPrice: "",
-      banType: "",
-      minYear: "",
-      maxYear: "",
-      isCredit: false,
-      isBarter: false,
-    },
+    filter: {},
   },
   reducers: {
     setFilter: (state, action) => {

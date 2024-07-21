@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCar, fetchCarById } from "../features/carSlice";
+import { fetchCarById } from "../features/carSlice";
 import "./CarDetail.css";
 
 export default function CarDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const car = useSelector((state) => state.cars.car);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -16,15 +16,15 @@ export default function CarDetail() {
     }
   }, [dispatch, id]);
 
-  function handleDeleteClick() {
-    const confirmed = window.confirm(
-      `Are you sure you want to delete ${car.Vendor} ${car.Model}?`
-    );
-    if (confirmed) {
-      dispatch(deleteCar(id));
-      navigate("/");
-    }
-  }
+  // function handleDeleteClick() {
+  //   const confirmed = window.confirm(
+  //     `Are you sure you want to delete ${car.Vendor} ${car.Model}?`
+  //   );
+  //   if (confirmed) {
+  //     dispatch(deleteCar(id));
+  //     navigate("/");
+  //   }
+  // }
 
   return (
     <>
@@ -127,14 +127,14 @@ export default function CarDetail() {
           <p>{car.Description}</p>
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      {/* <div style={{ display: "flex", justifyContent: "center" }}>
         <Link to={`/update-car/${car.id}`}>
           <button className="edit-btn">Edit</button>
         </Link>
         <button onClick={handleDeleteClick} className="delete-btn">
           Delete
         </button>
-      </div>
+      </div> */}
     </>
   );
 }

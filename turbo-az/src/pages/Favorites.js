@@ -83,7 +83,7 @@ export default function Favorites() {
                   <img src={car.Images} alt="car" />
                 )}
                 <div>
-                  <h3>{car.Price}</h3>
+                  <h3>{car.Price} AZN</h3>
                   <p
                     style={{
                       lineHeight: "19px",
@@ -93,9 +93,9 @@ export default function Favorites() {
                     {car.Mark} {car.Model}
                   </p>
                   <div className="texts">
-                    <p>{car.Year}</p>
-                    <p>{car.EngineVolume}</p>
-                    <p>{car.Miles}</p>
+                    <p>{car.Year} il, </p>
+                    <p>{car.EngineVolume} L, </p>
+                    <p>{car.Miles} km</p>
                   </div>
                 </div>
               </Link>
