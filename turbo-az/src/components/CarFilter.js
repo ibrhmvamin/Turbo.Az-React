@@ -93,7 +93,7 @@ export default function CarFilter() {
   };
 
   const azerbaijaniCities = [
-    "Baki",
+    "Bakı",
     "Ganja",
     "Sumqayit",
     "Lankaran",
@@ -138,7 +138,6 @@ export default function CarFilter() {
 
   const dispatch = useDispatch();
   const filteredCars = useSelector((state) => state.cars.filter);
-  // const cars = useSelector((state) => state.cars.cars);
 
   useEffect(() => {
     dispatch(setFilter(filterData));
