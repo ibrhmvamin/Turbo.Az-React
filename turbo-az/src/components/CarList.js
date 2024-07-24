@@ -8,10 +8,9 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
 export default function CarList() {
+  const dispatch = useDispatch();
   const cars = useSelector((state) => state.cars.cars);
   const filter = useSelector((state) => state.cars.filter);
-  const dispatch = useDispatch();
-
   const [likedCars, setLikedCars] = useState(() => {
     const savedLikedCars = Cookies.get("likedCars");
     return savedLikedCars ? JSON.parse(savedLikedCars) : [];

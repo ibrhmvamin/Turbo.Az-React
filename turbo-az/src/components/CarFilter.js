@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./CarFilter.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilter } from "../features/carSlice";
+import { setFilter, fetchCars } from "../features/carSlice";
 
 export default function CarFilter() {
   const carVendors = [
@@ -19,7 +19,7 @@ export default function CarFilter() {
     "Lexus",
     "Mazda",
     "Hyundai",
-    "Kia",
+    "KIA",
     "Volvo",
     "Jeep",
     "Tesla",
@@ -137,11 +137,11 @@ export default function CarFilter() {
   });
 
   const dispatch = useDispatch();
-  const filteredCars = useSelector((state) => state.cars.filter);
+  const cars = useSelector((state) => state.cars.cars);
 
   useEffect(() => {
-    dispatch(setFilter(filterData));
-  }, [filterData, dispatch]);
+    dispatch(fetchCars());
+  }, [dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -149,7 +149,29 @@ export default function CarFilter() {
   };
 
   const handleFilterClick = () => {
+    const filteredCars = cars.filter((car) => {
+      return (
+        (!filterData.vendor || car.vendor === filterData.vendor) &&
+        (!filterData.model || car.model === filterData.model) &&
+        (!filterData.city || car.city === filterData.city) &&
+        (!filterData.minPrice || car.price >= filterData.minPrice) &&
+        (!filterData.maxPrice || car.price <= filterData.maxPrice) &&
+        (!filterData.banType || car.banType === filterData.banType) &&
+        (!filterData.minYear || car.year >= filterData.minYear) &&
+        (!filterData.maxYear || car.year <= filterData.maxYear) &&
+        (!filterData.IsCredit || car.IsCredit === filterData.IsCredit) &&
+        (!filterData.IsBarter || car.IsBarter === filterData.IsBarter)
+      );
+    });
     console.log("filteredCars", filteredCars);
+    dispatch(setFilter(filterData));
+  };
+
+  const toggleFilter = (field) => {
+    setFilterData((prevData) => ({
+      ...prevData,
+      [field]: prevData[field] === "" ? "Yes" : "",
+    }));
   };
 
   return (
@@ -213,10 +235,16 @@ export default function CarFilter() {
           </option>
         ))}
       </select>
-      <button className="credit-barter" value={filterData.IsCredit}>
+      <button
+        className={`credit-barter ${filterData.IsCredit ? "active" : ""}`}
+        onClick={() => toggleFilter("IsCredit")}
+      >
         Kredit
       </button>
-      <button className="credit-barter" value={filterData.IsBarter}>
+      <button
+        className={`credit-barter ${filterData.IsBarter ? "active" : ""}`}
+        onClick={() => toggleFilter("IsBarter")}
+      >
         Barter
       </button>
       <div className="price-range">
